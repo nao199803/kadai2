@@ -1,0 +1,23 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+<h1>Editing Book</h1>
+<% if @book.errors.any? %>
+<% @book.errors.count %> prohibited this book from being saved
+<ul>
+<% @book.errors.full_messages.each do |massage| %>
+<li><%= massage %></li>
+<% end %>
+</ul>
+<% end %>
+<%= form_with model: @book do |f| %>
+
+<h4>Title</h4>
+<%=f.text_field :title %>
+
+<h4>Body</h4>
+<%=f.text_area :body %>
+<%=f.submit 'Update Book' %>
+<%=link_to 'show',book_path(@book.id) %>
+<%=link_to 'back','/books' %>
+<% end %>
